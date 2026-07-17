@@ -49,7 +49,7 @@ export default defineNuxtConfig({
   },
   routeRules: {
     '/': {
-      prerender: true,
+      redirect: { to: '/dashboard', statusCode: 302 }
     },
     '/api/**': {
       cors: process.env.NUXT_API_CORS === 'true',
