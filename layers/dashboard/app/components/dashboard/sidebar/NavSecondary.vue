@@ -1,12 +1,10 @@
 <script setup lang="ts">
-import { ArrowUpCircle, Coffee, Languages, Laptop, Moon, Sun } from 'lucide-vue-next'
+import { Languages, Laptop, Moon, Sun } from 'lucide-vue-next'
 import { useSidebar } from '@/components/ui/sidebar'
 
-const { coffee } = useAppConfig()
 const colorMode = useColorMode()
 const { setLocale, locales } = useI18n()
 const { state } = useSidebar()
-const { hasUpdate, currentVersion, latestVersion } = useVersionCheck()
 </script>
 
 <template>
@@ -18,66 +16,17 @@ const { hasUpdate, currentVersion, latestVersion } = useVersionCheck()
             class="flex w-full p-1.5 pr-0" :class="[
               state === 'collapsed'
                 ? 'flex-col items-center gap-2'
-                : 'items-center justify-between',
+                : 'items-center justify-end', /* 👈 调整为靠右对齐 */
             ]"
           >
-            <div class="flex items-center">
-              <TooltipProvider>
-                <Tooltip :delay-duration="100">
-                  <TooltipTrigger as-child>
-                    <a
-                      :href="coffee"
-                      target="_blank"
-                      :title="$t('sidebar.coffee')"
-                      class="
-                        flex h-8 items-center justify-center rounded-md px-2
-                        hover:bg-sidebar-accent
-                        hover:text-sidebar-accent-foreground
-                      "
-                    >
-                      <Coffee class="size-4" />
-                    </a>
-                  </TooltipTrigger>
-                  <TooltipContent :side="state === 'collapsed' ? 'right' : 'top'">
-                    <p>{{ $t('sidebar.coffee') }}</p>
-                  </TooltipContent>
-                </Tooltip>
-              </TooltipProvider>
-
-              <TooltipProvider v-if="hasUpdate">
-                <Tooltip :delay-duration="100">
-                  <TooltipTrigger as-child>
-                    <a
-                      href="https://github.com/ccbikai/Sink/releases"
-                      target="_blank"
-                      class="
-                        relative flex h-8 items-center justify-center rounded-md
-                        px-2
-                        hover:bg-sidebar-accent
-                        hover:text-sidebar-accent-foreground
-                      "
-                    >
-                      <ArrowUpCircle class="size-4" />
-                      <span
-                        class="
-                          absolute top-1 right-1 size-2 animate-pulse
-                          rounded-full bg-green-500
-                        "
-                      />
-                    </a>
-                  </TooltipTrigger>
-                  <TooltipContent :side="state === 'collapsed' ? 'right' : 'top'">
-                    <p>{{ $t('sidebar.update', { current: currentVersion, version: latestVersion }) }}</p>
-                  </TooltipContent>
-                </Tooltip>
-              </TooltipProvider>
-            </div>
+            <!-- 💡 原有的 Coffee 和 GitHub(vif="hasUpdate") 整个 <div> 区域已被彻底移除 -->
 
             <div
               class="flex gap-1" :class="[
                 state === 'collapsed' ? 'flex-col items-center' : 'items-center',
               ]"
             >
+              <!-- 保留的语言切换 -->
               <DropdownMenu>
                 <DropdownMenuTrigger as-child>
                   <button
@@ -108,6 +57,7 @@ const { hasUpdate, currentVersion, latestVersion } = useVersionCheck()
                 </DropdownMenuContent>
               </DropdownMenu>
 
+              <!-- 保留的暗黑模式切换 -->
               <DropdownMenu>
                 <DropdownMenuTrigger as-child>
                   <button
