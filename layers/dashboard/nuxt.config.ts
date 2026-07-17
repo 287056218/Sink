@@ -7,7 +7,7 @@ export default defineNuxtConfig({
       prerender: true,
     },
     '/dashboard': {
-      redirect: '/dashboard/links',
+      redirect: '/dashboard/login',
     },
   },
 })
