@@ -78,8 +78,5 @@ const settingsItems = computed<NavItem[]>(() => [
       <DashboardSidebarNavMain :platform-items="platformItems" :settings-items="settingsItems" />
       <DashboardSidebarNavSecondary class="mt-auto" />
     </SidebarContent>
-    <SidebarFooter>
-      <DashboardSidebarNavUser />
-    </SidebarFooter>
   </Sidebar>
 </template>
