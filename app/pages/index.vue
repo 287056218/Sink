@@ -1,9 +1,15 @@
 <script setup lang="ts">
-// 引入深层 Layers 目录下的仪表盘主页组件
-import DashboardPage from '~/../layers/dashboard/app/pages/dashboard/index.vue'
+// 在路由解析的第一时间，阻止渲染当前页，直接跳转到仪表盘
+definePageMeta({
+  middleware: [
+    function () {
+      return navigateTo('/dashboard', { redirectCode: 302 })
+    }
+  ]
+})
 </script>
 
 <template>
-  <!-- 直接将仪表盘作为首页渲染 -->
-  <DashboardPage />
+  <!-- 保持完全空白，不触发任何 404 渲染 -->
+  <div></div>
 </template>
