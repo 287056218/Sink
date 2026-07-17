@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import NumberFlow from '@number-flow/vue'
-import { Menu, Star, X } from 'lucide-vue-next'
+import { Menu } from 'lucide-vue-next'
 
 const showMenu = ref(false)
 const { title } = useAppConfig()
