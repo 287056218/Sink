@@ -9,9 +9,6 @@ export default defineNuxtRouteMiddleware(async (to) => {
 
   const { setAuthSession, clearAuthSession } = useAuthSession()
 
-  if (authMethod.value && to.path !== '/dashboard/login')
-    return
-
   try {
     const response = await useAPI<VerifyResponse>('/api/verify')
     setAuthSession(response)
