@@ -9,10 +9,14 @@ export default defineNuxtRouteMiddleware(async (to) => {
 
   const { setAuthSession, clearAuthSession } = useAuthSession()
 
+  if (authMethod.value && to.path !== '/dashboard/login')
+    return
+
   try {
     const response = await useAPI<VerifyResponse>('/api/verify')
     setAuthSession(response)
-    if (to.path === '/dashboard/login')
+    
+    if (to.path === '/dashboard/login' || to.path === '/dashboard' || to.path === '/dashboard/')
       return navigateTo('/dashboard/links')
   }
   catch {
